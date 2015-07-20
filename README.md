@@ -18,9 +18,19 @@ A package for creating a social network style news feed
 
 **User.prototype.feed()** - Get a feed object for the user.
 
-### Feed Ojbect ###
+```javascript
+var feed = Meteor.user().feed();
+```
+
+### Feed Object ###
 
 **addPost(body)** - add a post the the users feed.
+
+```javascript
+var feed = Meteor.users.findOne().feed();
+
+feed.addPost("Hello World!");
+```
 
 ## Publications ##
 
