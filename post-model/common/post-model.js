@@ -48,7 +48,7 @@ Post.appendSchema({
         type:String,
         regEx:SimpleSchema.RegEx.Id,
         autoValue:function () {
-            if(this.isInsert || !this.isFromTrustedCode){
+            if(this.isInsert){
                 return Meteor.userId();
             }
         },
@@ -58,8 +58,12 @@ Post.appendSchema({
         type:String,
         regEx:SimpleSchema.RegEx.Id,
         autoValue:function () {
-            if(this.isInsert && !this.isSet){
-                return Meteor.userId();
+            if(this.isInsert){
+                if(this.isSet){
+                    return this.value;
+                }else{
+                    return Meteor.userId();
+                }
             }
         },
         denyUpdate:true
@@ -67,7 +71,7 @@ Post.appendSchema({
     "date":{
         type:Date,
         autoValue:function() {
-            if(this.isInsert || !this.isFromTrustedCode){
+            if(this.isInsert){
                 return new Date();
             }
         },
