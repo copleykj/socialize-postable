@@ -2,7 +2,11 @@
  *  A post model
  *  @class Post
  */
-Post = CommentableModel.extendAndSetupCollection("posts");
+Post = BaseModel.extendAndSetupCollection("posts");
+
+CommentableModel.makeCommentable(Post, "post");
+
+LikeableModel.makeLikeable(Post, "post");
 
 /**
  * The user who's feed the post was added to
