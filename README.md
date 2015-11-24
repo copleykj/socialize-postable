@@ -39,11 +39,7 @@ var feed = Meteor.user().feed();
 
 ## Publications ##
 
-**posts {limit, skip, sort:{field:direction}}** - publish the posts for the current user and of their friends.
-
-```javascript
-Meteor.subscribe("posts", {limit:10, skip:10, sort:{date:-1});
-```
+Publications have been removed to allow the use of your choice of publication package. For an example of publishing joined data for this package please visit the [publications page](https://github.com/copleykj/socialize-feed/wiki/Publications) of the wiki
 
 [1]: https://github.com/copleykj/socialize-base-model
 [2]: https://github.com/copleykj/socialize-commentable
