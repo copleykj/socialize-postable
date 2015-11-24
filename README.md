@@ -3,16 +3,30 @@
 A package for creating a social network style news feed
 
 
-## Post - Extends CommentableModel##
+## Post (class) - Extends [BaseModel][1] - Implements [CommentableModel][2] and [LikeableModel][3]##
 
-**Post.prototype.user()** - The user who's feed the post was added to.
+### Instance Methods ###
 
-**Post.prototype.poster()** - The use who added the post to the feed.
+**user()** - The user who's feed the post was added to.
 
-**Post.prototype.checkOwnership()** - Check if the user is the poster or the user as both can delete the post.
+**poster()** - The use who added the post to the feed. Poster may return the same as user if the user created the post in their own feed.
 
-**Post.prototype.canUpdate()** - Check if the user is allowed to update the post. Only poster can change a post.
+**checkOwnership()** - Check if the user is the poster or the user as both can delete the post.
 
+**canUpdate()** - Check if the user is allowed to update the post. Only poster can change a post.
+
+
+## Feed (class) - Extends [BaseModel][1] ##
+
+Feed instances must be created by calling `user.feed()`. This will return the feed object for that user. You can then call the methods of the feed as needed.
+
+### Instance Methods ###
+
+**addPost(&lt;String&gt; body)** - Add a post to the users feed.
+
+```javascript
+Meteor.user().feed().addPost("Socialize Packages Rock!");
+```
 
 ## User Extensions ##
 
@@ -22,15 +36,6 @@ A package for creating a social network style news feed
 var feed = Meteor.user().feed();
 ```
 
-### Feed Object ###
-
-**addPost(body)** - add a post the the users feed.
-
-```javascript
-var feed = Meteor.users.findOne().feed();
-
-feed.addPost("Hello World!");
-```
 
 ## Publications ##
 
@@ -39,3 +44,7 @@ feed.addPost("Hello World!");
 ```javascript
 Meteor.subscribe("posts", {limit:10, skip:10, sort:{date:-1});
 ```
+
+[1]: https://github.com/copleykj/socialize-base-model
+[2]: https://github.com/copleykj/socialize-commentable
+[3]: https://github.com/copleykj/socialize-likeable
