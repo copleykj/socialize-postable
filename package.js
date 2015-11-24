@@ -15,5 +15,5 @@ Package.onUse(function(api) {
     api.addFiles(["post-model/common/post-model.js", "user-extensions.js"]);
     api.addFiles(["post-model/server/server.js", "post-model/server/publications.js"], "server");
 
-    api.export(["Post"]);
+    api.export(["Post", "Feed"]);
 });
