@@ -63,9 +63,7 @@ Post.appendSchema({
         regEx:SimpleSchema.RegEx.Id,
         autoValue:function () {
             if(this.isInsert){
-                if(this.isSet){
-                    return this.value;
-                }else{
+                if(!this.isSet){
                     return Meteor.userId();
                 }
             }

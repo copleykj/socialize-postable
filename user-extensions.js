@@ -2,7 +2,7 @@ Feed = BaseModel.extend();
 
 Feed.methods({
     addPost: function (body) {
-        new Post({body:body}).save();
+        new Post({body:body, userId:this.userId}).save();
     }
 });
 /**
