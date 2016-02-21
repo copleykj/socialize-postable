@@ -8,7 +8,7 @@ Package.onUse(function(api) {
     api.versionsFrom("1.0.2.1");
 
     api.use([
-        "socialize:user-model@0.1.4", "socialize:commentable@0.2.0"
+        "socialize:user-model@0.1.6", "socialize:commentable@0.2.1"
     ]);
 
     //Add the post-model files
