@@ -1,14 +1,14 @@
 Package.describe({
     name: "socialize:feed",
     summary: "A package for impmementing a social network style news feed",
-    version: "0.2.2",
+    version: "0.2.3",
 });
 
 Package.onUse(function(api) {
     api.versionsFrom("1.0.2.1");
 
     api.use([
-        "socialize:user-model@0.1.6", "socialize:commentable@0.2.1"
+        "socialize:user-model@0.1.7", "socialize:commentable@0.2.1"
     ]);
 
     //Add the post-model files
