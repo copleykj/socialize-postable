@@ -1,3 +1,5 @@
+import { PostsCollection } from './post-model';
+
 PostsCollection.allow({
     insert: function (userId, post) {
         var user = User.createEmpty(post.userId);
@@ -22,3 +24,5 @@ PostsCollection.after.remove(function(userId, post){
     Meteor.comments.remove({linkedObjectId:post._id});
     Meteor.likes.remove({linkedObjectId:post._id});
 });
+
+export PostsCollection from './post-model';

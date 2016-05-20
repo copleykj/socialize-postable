@@ -1,46 +1,56 @@
-# Feed #
+# Postable #
 
-A package for creating a social network style news feed
+A package for creating models that can be posted on. User profiles could be postable to create a news feed. Groups could be posted on to give users common areas to talk about specific topics. Other postable things are up to your imagination.
 
+## Installation ##
 
-## Post (class) - Extends [BaseModel][1] - Implements [CommentableModel][2] and [LikeableModel][3]##
+>meteor add socialize:postable
 
-### Instance Methods ###
+## Basic Usage ##
 
-**user()** - The user who's feed the post was added to.
-
-**poster()** - The use who added the post to the feed. Poster may return the same as user if the user created the post in their own feed.
-
-**checkOwnership()** - Check if the user is the poster or the user as both can delete the post.
-
-**canUpdate()** - Check if the user is allowed to update the post. Only poster can change a post.
-
-
-## Feed (class) - Extends [BaseModel][1] ##
-
-Feed instances must be created by calling `user.feed()`. This will return the feed object for that user. You can then call the methods of the feed as needed.
-
-### Instance Methods ###
-
-**addPost(&lt;String&gt; body)** - Add a post to the users feed.
+For the most part you will probably be able to find the functionality you need in another socialize package. The user-profile package implements this to provide a feed for each users profile. That being said you can use this directly and create new classes that are postable.
 
 ```javascript
-Meteor.user().feed().addPost("Socialize Packages Rock!");
+import { Mongo } from 'meteor/mongo';
+import { LinkableModel } from 'meteor/socialize:linkable-model';
+import { BaseModel } from 'meteor/socialize:base-model';
+import { PostableModel } from 'meteor/socialize:postable';
+
+//create the collection to store information about each group
+const GroupsCollection = new Mongo.Collection("groups");
+
+//define the group class and use the PostableModel mixin extending BaseModel.
+class Group extends PostableModel(BaseModel){
+    //Must have a constructor which accepts a document
+    constructor(document){
+        //call super to make sure we are extending the class with the document
+        super(document);
+    }
+
+    //methods of the Group classes
+
+    members(){
+        return GroupMembersCollection.find({groupId:this._id});
+    }
+}
+
+//Attach the collection to the group class so we can use CRUD methods provided by BaseModel
+Group.attachCollection(GroupsCollection);
+
+//Register the Group class as a linkable type since posts will be linked to a group.
+LinkableModel.registerLinkableType(Group);
+
+//Create a new group using BaseModel's save method
+new Group({name:"Meteor Lovers"});
+
+//Get an instance of group by querying MongoDB
+var group = GroupsCollection.findOne();
+
+console.log(group.name); // -> "Meteor Lovers"
+
+group.members().forEach(member => {
+    console.log(member.user().username);
+});
 ```
 
-## User Extensions ##
-
-**User.prototype.feed()** - Get a feed object for the user.
-
-```javascript
-var feed = Meteor.user().feed();
-```
-
-
-## Publications ##
-
-Publications have been removed to allow the use of your choice of publication package. For an example of publishing joined data for this package please visit the [publications page](https://github.com/copleykj/socialize-feed/wiki/Publications) of the wiki
-
-[1]: https://github.com/copleykj/socialize-base-model
-[2]: https://github.com/copleykj/socialize-commentable
-[3]: https://github.com/copleykj/socialize-likeable
+\* __*Take note of the call to `LinkableModel.registerLinkableType`*__. This is necessary to setup the link between the Model (in this case Group) and the posts connected to it. 
