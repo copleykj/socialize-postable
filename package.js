@@ -11,7 +11,7 @@ Package.onUse(function(api) {
     api.use("ecmascript");
 
     api.use([
-        "socialize:commentable@0.2.1"
+        "socialize:commentable@1.0.0"
     ]);
 
     api.mainModule('server.js', 'server');
