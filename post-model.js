@@ -4,8 +4,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { LikeableModel } from 'meteor/socialize:likeable';
 import { CommentableModel } from 'meteor/socialize:commentable';
-import { LinkableModel } from 'meteor/socialize:linkable-model';
-
+import { LinkableModel, LinkParent } from 'meteor/socialize:linkable-model';
 
 export const PostsCollection = new Mongo.Collection("posts");
 
@@ -49,7 +48,7 @@ PostsCollection.attachSchema(PostsSchema);
  *  @extends LinkabelModel
  *  @extends BaseModel
  */
-export class Post extends LikeableModel(CommentableModel(LinkableModel(BaseModel))) {
+export class Post extends LikeableModel(CommentableModel(LinkableModel(LinkParent))) {
     constructor(document) {
         super(document);
     }
