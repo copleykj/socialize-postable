@@ -5,7 +5,9 @@ import { Post, PostsCollection } from './post-model';
  * PostableModel - A mixin to provide postable behavior to models
  */
 export const PostableModel = Base => class extends Base {
-
+    constructor(document){
+        super();
+    }
     addPost(body) {
         new Post({
             body:body,
