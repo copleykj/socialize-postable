@@ -94,4 +94,4 @@ Post.appendSchema(CommentableModel.CommentableSchema);
 //attach linkable schema since posts will now be linked to models that extend PostableModel
 Post.appendSchema(LinkableModel.LinkableSchema);
 //register the post model as a linkable type
-LinkableModel.registerLinkableType(Post);
+LinkableModel.registerParentModel(Post);
