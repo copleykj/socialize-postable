@@ -38,7 +38,7 @@ class Group extends PostableModel(BaseModel){
 Group.attachCollection(GroupsCollection);
 
 //Register the Group class as a linkable type since posts will be linked to a group.
-LinkableModel.registerLinkableType(Group);
+LinkableModel.registerParentModel(Group);
 
 //Create a new group using BaseModel's save method
 new Group({name:"Meteor Lovers"});
@@ -53,4 +53,4 @@ group.members().forEach(member => {
 });
 ```
 
-\* __*Take note of the call to `LinkableModel.registerLinkableType`*__. This is necessary to setup the link between the Model (in this case Group) and the posts connected to it. 
+\* __*Take note of the call to `LinkableModel.registerParentModel`*__. This is necessary to setup the link between the Model (in this case Group) and the posts connected to it.
