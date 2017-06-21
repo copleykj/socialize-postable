@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { BaseModel } from 'meteor/socialize:base-model';
 import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import SimpleSchema from 'simpl-schema';
 import { LikeableModel } from 'meteor/socialize:likeable';
 import { CommentableModel } from 'meteor/socialize:commentable';
 import { LinkableModel, LinkParent } from 'meteor/socialize:linkable-model';
