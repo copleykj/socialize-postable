@@ -1,18 +1,24 @@
-import { Post, PostsCollection } from './post-model';
+/* eslint-disable import/no-unresolved */
+import { Meteor } from 'meteor/meteor';
+import { LinkParent } from 'meteor/socialize:linkable-model';
+/* eslint-enable import/no-unresolved */
 
+import { Post, PostsCollection } from './post-model';
 
 /**
  * PostableModel - A mixin to provide postable behavior to models
  */
-export const PostableModel = Base => class extends Base {
-    constructor(document){
-        super();
+export const PostableModel = Base => class extends Base { //eslint-disable-line
+    constructor(document) {
+        super(document);
+        if (!(this instanceof LinkParent)) {
+            throw new Meteor.Error('MustExtendParentLink', 'LikeableModel must extend LinkParent from socialize:linkable-model');
+        }
     }
     addPost(body) {
         new Post({
-            body:body,
-            linkedObjectId:this._id,
-            objectType:this._objectType
+            body,
+            ...this.getLinkObject(),
         }).save();
     }
 
@@ -25,7 +31,7 @@ export const PostableModel = Base => class extends Base {
      * @returns {Mongo.Cursor} A cursor that returns post instances
      */
     posts(limit, skip, sortBy, sortOrder) {
-        var options = {};
+        const options = {};
 
         if (limit) {
             options.limit = limit;
@@ -35,11 +41,11 @@ export const PostableModel = Base => class extends Base {
             options.skip = skip;
         }
 
-        if(sortBy && sortOrder){
+        if (sortBy && sortOrder) {
             options.sort = {};
             options.sort[sortBy] = sortOrder;
         }
 
-        return PostsCollection.find({linkedObjectId:this._id}, options);
+        return PostsCollection.find(this.getLinkObject(), options);
     }
-}
+};
