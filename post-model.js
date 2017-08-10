@@ -66,9 +66,11 @@ export class Post extends LikeableModel(CommentableModel(LinkableModel(LinkParen
      * Check to see if the current user was either the user posted to or the posting user
      * @returns {Boolean} Whether the user is considered an "owner" of the post
      */
-    checkOwnership() {
+    canRemove() {
         const currentUserId = Meteor.userId();
-        return this.posterId === currentUserId || this.linkedParent().userId === currentUserId;
+        return this.posterId === currentUserId ||
+            this.linkedObjectId === currentUserId ||
+            this.linkedParent().userId === currentUserId;
     }
 
     /**

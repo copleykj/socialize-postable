@@ -7,10 +7,10 @@ import { PostsCollection } from './post-model';
 
 PostsCollection.allow({
     update(userId, post) {
-        return userId && post.checkOwnership();
+        return userId && post.canUpdate();
     },
     remove(userId, post) {
-        return userId && post.checkOwnership();
+        return userId && post.canRemove();
     },
 });
 
