@@ -1,4 +1,4 @@
-
+/* global Package */
 Package.describe({
     name: 'socialize:postable',
     summary: 'A package to create models which can be posted upon',
@@ -6,7 +6,7 @@ Package.describe({
     git: 'https://github.com/copleykj/socialize-postable.git',
 });
 
-Package.onUse(function (api) {
+Package.onUse(function _(api) {
     api.versionsFrom('1.3');
 
     api.use('ecmascript');
@@ -17,8 +17,4 @@ Package.onUse(function (api) {
 
     api.mainModule('server.js', 'server');
     api.mainModule('common.js');
-});
-
-Package.onTest(function (api) {
-    // write some tests please!
 });
