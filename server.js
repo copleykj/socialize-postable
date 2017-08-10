@@ -1,28 +1,24 @@
+/* eslint-disable import/no-unresolved */
+import { CommentsCollection } from 'meteor/socialize:commentable';
+import { LikesCollection } from 'meteor/socialize:likeable';
+/* eslint-enable import/no-unresolved */
+
 import { PostsCollection } from './post-model';
 
 PostsCollection.allow({
-    insert: function (userId, post) {
-        var user = User.createEmpty(post.userId);
-        var poster = User.createEmpty(post.posterId);
-        if(user.isSelf(poster)){
-            return true;
-        }else {
-            return userId && !user.blocksUser(poster) && ! poster.blocksUserById(user);
-        }
-    },
-    update: function (userId, post) {
+    update(userId, post) {
         return userId && post.checkOwnership();
     },
-    remove: function(userId, post){
+    remove(userId, post) {
         return userId && post.checkOwnership();
-    }
+    },
 });
 
 
-PostsCollection.after.remove(function(userId, post){
-    //clean up any comments or likes that were linked to the deleted post
-    Meteor.comments.remove({linkedObjectId:post._id});
-    Meteor.likes.remove({linkedObjectId:post._id});
+PostsCollection.after.remove(function afterRemove(userId, post) {
+    // clean up any comments or likes that were linked to the deleted post
+    CommentsCollection.remove({ linkedObjectId: post._id });
+    LikesCollection.remove({ linkedObjectId: post._id });
 });
 
 export PostsCollection from './post-model';
