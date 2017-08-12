@@ -6,7 +6,7 @@ import { LikeableModel } from 'meteor/socialize:likeable';
 import { CommentableModel } from 'meteor/socialize:commentable';
 import { LinkableModel, LinkParent } from 'meteor/socialize:linkable-model';
 
-export const PostsCollection = new Mongo.Collection('posts');
+export const PostsCollection = new Mongo.Collection('socialize:posts');
 
 // create the schema for a post
 const PostsSchema = new SimpleSchema({
