@@ -11,9 +11,9 @@ class Group extends PostableModel(BaseModel) {
 ```
 ## Methods ##
 
-`addPost(<String> body)` - Add a post connected to the model.
+**addPost(body)** - Add a post connected to the model.
 
-`posts(<Number> limit, <Number> skip, <String> sortBy, <Number> sortOrder)` - Retrieve the posts for the model. ***From the client this will depend on the posts being published.***
+**posts(options)** - Retrieve the posts for the model. Signature of `options` param is the same as you would pass to `Collection.find()`.
 
 
 # Post #
@@ -23,11 +23,11 @@ Model for the record of each post on a connected Model.
 
 ## Methods ##
 
-`poster()` - The use who added the post to the feed. Poster may return the same as user if the user created the post in their own feed.
+**poster()** - The use who added the post to the feed. Poster may return the same as user if the user created the post in their own feed.
 
-`checkOwnership()` - Check if the user is the poster or the user as both can delete the post.
+**checkOwnership()** - Check if the user is the poster or the user as both can delete the post.
 
-`canUpdate()` - Check if the user is allowed to update the post. Only poster can change a post.
+**canUpdate()** - Check if the user is allowed to update the post. Only poster can change a post.
 
 [1]: https://github.com/copleykj/socialize-base-model
 [2]: https://github.com/copleykj/socialize-commentable
