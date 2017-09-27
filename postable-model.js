@@ -19,7 +19,9 @@ export const PostableModel = Base => class extends Base { //eslint-disable-line
         new Post({
             body,
             ...this.getLinkObject(),
-        }).save();
+        }).save({
+            channel: `posts::${this._id}`,
+        });
     }
 
     /**

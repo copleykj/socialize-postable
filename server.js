@@ -17,8 +17,12 @@ PostsCollection.allow({
 
 PostsCollection.after.remove(function afterRemove(userId, post) {
     // clean up any comments or likes that were linked to the deleted post
-    CommentsCollection.remove({ linkedObjectId: post._id });
-    LikesCollection.remove({ linkedObjectId: post._id });
+    CommentsCollection.remove({ linkedObjectId: post._id }, {
+        channel: `comments::${post._id}`,
+    });
+    LikesCollection.remove({ linkedObjectId: post._id }, {
+        channel: `likes::${post._id}`,
+    });
 });
 
 export PostsCollection from './post-model';
