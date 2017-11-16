@@ -12,7 +12,7 @@ export const PostableModel = Base => class extends Base { //eslint-disable-line
     constructor(document) {
         super(document);
         if (!(this instanceof LinkParent)) {
-            throw new Meteor.Error('MustExtendParentLink', 'LikeableModel must extend LinkParent from socialize:linkable-model');
+            throw new Meteor.Error('MustExtendParentLink', 'PostableModel must extend LinkParent from socialize:linkable-model');
         }
     }
     addPost(body) {
@@ -20,7 +20,7 @@ export const PostableModel = Base => class extends Base { //eslint-disable-line
             body,
             ...this.getLinkObject(),
         }).save({
-            channel: `posts::${this._id}`,
+            namespace: `${this._id}`,
         });
     }
 
@@ -30,6 +30,10 @@ export const PostableModel = Base => class extends Base { //eslint-disable-line
      * @returns {Mongo.Cursor} A cursor that returns post instances
      */
     posts(options = {}) {
-        return PostsCollection.find(this.getLinkObject(), options);
+        const newOptions = {
+            ...options,
+            namespace: `${this._id}`,
+        };
+        return PostsCollection.find(this.getLinkObject(), newOptions);
     }
 };
