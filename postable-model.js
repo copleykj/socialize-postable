@@ -19,9 +19,7 @@ export const PostableModel = Base => class extends Base { //eslint-disable-line
         new Post({
             body,
             ...this.getLinkObject(),
-        }).save({
-            namespace: `${this._id}`,
-        });
+        }).save();
     }
 
     /**
@@ -30,10 +28,6 @@ export const PostableModel = Base => class extends Base { //eslint-disable-line
      * @returns {Mongo.Cursor} A cursor that returns post instances
      */
     posts(options = {}) {
-        const newOptions = {
-            ...options,
-            namespace: `${this._id}`,
-        };
-        return PostsCollection.find(this.getLinkObject(), newOptions);
+        return PostsCollection.find(this.getLinkObject(), options);
     }
 };
