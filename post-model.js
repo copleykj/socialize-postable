@@ -22,7 +22,6 @@ const PostsSchema = new SimpleSchema({
         },
         denyUpdate: true,
     },
-    // The date at which the post was created.
     createAt: {
         type: Date,
         autoValue() {
@@ -33,14 +32,12 @@ const PostsSchema = new SimpleSchema({
         },
         denyUpdate: true,
     },
-    // Latest update date
     updatedAt: {
         type: Date,
         optional: true,
         autoValue() {
-          if (this.isInsert || this.isUpdate)
             return new Date();
-        }
+        },
     },
     // The body text of the post
     body: {
