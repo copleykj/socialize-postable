@@ -48,8 +48,7 @@ const PostsSchema = new SimpleSchema({
         },
         denyUpdate: true,
     },
-    // The date at which the post was created.
-    date: {
+    createAt: {
         type: Date,
         autoValue() {
             if (this.isInsert) {
@@ -59,9 +58,16 @@ const PostsSchema = new SimpleSchema({
         },
         denyUpdate: true,
     },
+    updatedAt: {
+        type: Date,
+        optional: true,
+        autoValue() {
+            return new Date();
+        },
+    },
     // The body text of the post
     body: {
-        type: String,
+        type: SimpleSchema.oneOf(String, Object),
     },
 });
 
