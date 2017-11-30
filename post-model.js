@@ -5,6 +5,9 @@ import SimpleSchema from 'simpl-schema';
 import { LikeableModel } from 'meteor/socialize:likeable';
 import { CommentableModel } from 'meteor/socialize:commentable';
 import { LinkableModel, LinkParent } from 'meteor/socialize:linkable-model';
+import { ServerTime } from 'meteor/socialize:server-time';
+
+/* eslint-enable import/no-unresolved */
 
 export const PostsCollection = new Mongo.Collection('socialize:posts');
 
@@ -26,7 +29,7 @@ const PostsSchema = new SimpleSchema({
         type: Date,
         autoValue() {
             if (this.isInsert) {
-                return new Date();
+                return ServerTime.date();
             }
             return undefined;
         },
@@ -37,7 +40,7 @@ const PostsSchema = new SimpleSchema({
         type: Date,
         optional: true,
         autoValue() {
-            return new Date();
+            return ServerTime.date();
         },
     },
     // The body text of the post
