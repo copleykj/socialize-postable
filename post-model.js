@@ -11,6 +11,32 @@ import { ServerTime } from 'meteor/socialize:server-time';
 
 export const PostsCollection = new Mongo.Collection('socialize:posts');
 
+if (PostsCollection.configureRedisOplog) {
+    PostsCollection.configureRedisOplog({
+        mutation(options, { selector, doc }) {
+            let linkedObjectId = (selector && selector.linkedObjectId) || (doc && doc.linkedObjectId);
+
+            if (!linkedObjectId && selector._id) {
+                const comment = PostsCollection.findOne({ _id: selector._id }, { fields: { linkedObjectId: 1 } });
+                linkedObjectId = comment && comment.linkedObjectId;
+            }
+
+            if (linkedObjectId) {
+                Object.assign(options, {
+                    namespace: linkedObjectId,
+                });
+            }
+        },
+        cursor(options, selector) {
+            if (selector.linkedObjectId) {
+                Object.assign(options, {
+                    namespace: selector.linkedObjectId,
+                });
+            }
+        },
+    });
+}
+
 // create the schema for a post
 const PostsSchema = new SimpleSchema({
     // The _id of the user who creates the post.
