@@ -59,3 +59,5 @@ group.members().forEach(member => {
 ```
 
 \* __*Take note of the call to `LinkableModel.registerParentModel`*__. This is necessary to setup the link between the Model (in this case Group) and the posts connected to it.
+
+For a more in depth explanation of how to use this package see [API.md](API.md)
