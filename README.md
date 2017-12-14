@@ -61,3 +61,11 @@ group.members().forEach(member => {
 \* __*Take note of the call to `LinkableModel.registerParentModel`*__. This is necessary to setup the link between the Model (in this case Group) and the posts connected to it.
 
 For a more in depth explanation of how to use this package see [API.md](API.md)
+
+## Scalability - Redis Oplog ##
+
+This package contains a preliminary implementation of [cultofcoders:redis-oplog][1]'s namespaces to provide reactive scalability as an alternative to Meteor's `livedata`. Use of redis-oplog is not required and will not engage until you install the [cultofcoders:redis-oplog][1] package and configure it.
+
+Due to the preliminary nature of this implementation, you may run into minor issues. Please report any issues you find to GitHub so that they can be fixed.
+
+[1]:https://github.com/cultofcoders/redis-oplog
