@@ -92,9 +92,7 @@ export class Post extends LikeableModel(CommentableModel(LinkableModel(LinkParen
      * @returns {User} The user who sent the post
      */
     poster() {
-        // backwards compatability with old posts that only had the userId
         const posterId = this.posterId;
-
         return Meteor.users.findOne({ _id: posterId });
     }
 
