@@ -36,7 +36,7 @@ if (PostsCollection.configureRedisOplog) {
                 if (linkedObjectId.$in) {
                     namespaces = linkedObjectId.$in;
                 } else {
-                    namespaces.push(linkedObjectId);
+                    namespaces = [linkedObjectId];
                 }
             }
             Object.assign(options, {
