@@ -14,6 +14,7 @@ export const PostsCollection = new Mongo.Collection('socialize:posts');
 if (PostsCollection.configureRedisOplog) {
     PostsCollection.configureRedisOplog({
         mutation(options, { selector, doc }) {
+            const namespaces = [PostsCollection._name];
             let linkedObjectId = (selector && selector.linkedObjectId) || (doc && doc.linkedObjectId);
 
             if (!linkedObjectId && selector._id) {
@@ -22,13 +23,14 @@ if (PostsCollection.configureRedisOplog) {
             }
 
             if (linkedObjectId) {
-                Object.assign(options, {
-                    namespace: linkedObjectId,
-                });
+                namespaces.push(linkedObjectId);
             }
+            Object.assign(options, {
+                namespaces,
+            });
         },
         cursor(options, selector) {
-            let namespaces = [];
+            let namespaces = [PostsCollection._name];
             const { linkedObjectId } = selector;
             if (linkedObjectId) {
                 if (linkedObjectId.$in) {
