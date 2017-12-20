@@ -28,11 +28,18 @@ if (PostsCollection.configureRedisOplog) {
             }
         },
         cursor(options, selector) {
-            if (selector.linkedObjectId) {
-                Object.assign(options, {
-                    namespace: selector.linkedObjectId,
-                });
+            let namespaces = [];
+            const { linkedObjectId } = selector;
+            if (linkedObjectId) {
+                if (linkedObjectId.$in) {
+                    namespaces = linkedObjectId.$in;
+                } else {
+                    namespaces.push(linkedObjectId);
+                }
             }
+            Object.assign(options, {
+                namespaces,
+            });
         },
     });
 }
