@@ -23,9 +23,9 @@ Model for the record of each post on a connected Model.
 
 ## Methods ##
 
-**poster()** - The use who added the post to the feed. Poster may return the same as user if the user created the post in their own feed.
+**poster()** - The user who added the post to the feed. Poster may return the same as user if the user created the post in their own feed.
 
-**checkOwnership()** - Check if the user is the poster or the user as both can delete the post.
+**canRemove()** - Check if the user is allowed to delete the post. The poster and the owner can both delete the post.
 
 **canUpdate()** - Check if the user is allowed to update the post. Only poster can change a post.
 
