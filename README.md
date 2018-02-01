@@ -31,14 +31,7 @@ const GroupsCollection = new Mongo.Collection("groups");
 
 //define the group class and use the PostableModel mixin extending BaseModel.
 class Group extends PostableModel(BaseModel){
-    //Must have a constructor which accepts a document
-    constructor(document){
-        //call super to make sure we are extending the class with the document
-        super(document);
-    }
-
     //methods of the Group classes
-
     members(){
         return GroupMembersCollection.find({groupId:this._id});
     }
