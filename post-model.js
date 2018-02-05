@@ -58,6 +58,7 @@ const PostsSchema = new SimpleSchema({
             }
             return undefined;
         },
+        index: 1,
         denyUpdate: true,
     },
     createdAt: {
@@ -118,7 +119,7 @@ export class Post extends LikeableModel(CommentableModel(LinkableModel(LinkParen
 
     /**
      * Check if the current user is allowed to update the post
-     * @returns {Boolean} Wheter or not the user is allowed to update the post
+     * @returns {Boolean} Whether or not the user is allowed to update the post
      */
     canUpdate() {
         const currentUserId = Meteor.userId();
@@ -131,7 +132,7 @@ Post.attachCollection(PostsCollection);
 
 // attach likeable schema since we extend LikeableModel
 Post.appendSchema(LikeableModel.LikeableSchema);
-// attach commentable schemal since we extend CommentableModel
+// attach commentable schema since we extend CommentableModel
 Post.appendSchema(CommentableModel.CommentableSchema);
 // attach linkable schema since posts will now be linked to models that extend PostableModel
 Post.appendSchema(LinkableModel.LinkableSchema);
