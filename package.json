@@ -1,6 +1,6 @@
 {
     "name": "@socialize/postable",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Meteor's socialize:postable package ported for React Native",
     "main": "entry-rn.js",
     "scripts": {
@@ -21,6 +21,6 @@
     },
     "homepage": "https://github.com/copleykj/socialize-postable#readme",
     "dependencies": {
-        "@socialize/commentable": "^0.0.1"
+        "@socialize/commentable": "^1.0.0"
     }
 }
