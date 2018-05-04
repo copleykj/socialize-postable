@@ -19,7 +19,7 @@ In the spirit of keeping this and all of the packages in the [Socialize][sociali
 
 Litecoin: LXLBD9sC5dV79eQkwj7tFusUHvJA5nhuD3 / [Patreon](https://www.patreon.com/user?u=4866588) / [Paypal](https://www.paypal.me/copleykj)
 
-## Installation
+## Meteor Installation
 
 This package relies on the npm package `simpl-schema` so you will need to make sure it is installed as well.
 
@@ -95,13 +95,13 @@ group.members().forEach(member => {
 
 \* __*Take note of the call to `LinkableModel.registerParentModel`*__. This is necessary to setup the link between the Model (in this case Group) and the posts connected to it.
 
-For a more in depth explanation of how to use this package see [API.md](api)
+For a more in depth explanation of how to use this package see [API.md][api]
 
 ## Scalability - Redis Oplog
 
 This package implements [cultofcoders:redis-oplog][redis-oplog]'s namespaces to provide reactive scalability as an alternative to Meteor's `livedata`. Use of redis-oplog is not required and will not engage until you install the [cultofcoders:redis-oplog][redis-oplog] package and configure it.
 
 [redis-oplog]:https://github.com/cultofcoders/redis-oplog
-[api]: https://github.com/copleykj/socialize-commentable/blob/master/API.md
+[api]: https://github.com/copleykj/socialize-postable/blob/master/API.md
 [socialize]: https://atmospherejs.com/socialize
 [meteor]: https://meteor.com
