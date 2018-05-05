@@ -15,6 +15,6 @@ Package.onUse(function _(api) {
         'socialize:commentable@1.0.0',
     ]);
 
-    api.mainModule('server.js', 'server');
-    api.mainModule('common.js');
+    api.mainModule('./server/server.js', 'server');
+    api.mainModule('./common/common.js');
 });

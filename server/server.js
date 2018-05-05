@@ -3,7 +3,7 @@ import { CommentsCollection } from 'meteor/socialize:commentable';
 import { LikesCollection } from 'meteor/socialize:likeable';
 /* eslint-enable import/no-unresolved */
 
-import { PostsCollection } from './post-model';
+import { PostsCollection } from '../common/common.js';
 
 PostsCollection.allow({
     update(userId, post) {
@@ -20,5 +20,3 @@ PostsCollection.after.remove(function afterRemove(userId, post) {
     CommentsCollection.remove({ linkedObjectId: post._id });
     LikesCollection.remove({ linkedObjectId: post._id });
 });
-
-export PostsCollection from './post-model';
