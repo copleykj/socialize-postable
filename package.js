@@ -2,7 +2,7 @@
 Package.describe({
     name: 'socialize:postable',
     summary: 'A package to create models which can be posted upon',
-    version: '1.0.0',
+    version: '1.0.1',
     git: 'https://github.com/copleykj/socialize-postable.git',
 });
 
@@ -12,9 +12,9 @@ Package.onUse(function _(api) {
     api.use('ecmascript');
 
     api.use([
-        'socialize:commentable@1.0.0',
+        'socialize:commentable@1.0.2',
     ]);
 
-    api.mainModule('server.js', 'server');
-    api.mainModule('common.js');
+    api.mainModule('./server/server.js', 'server');
+    api.mainModule('./common/common.js', 'client');
 });
