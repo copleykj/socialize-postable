@@ -2,7 +2,7 @@
 Package.describe({
     name: 'socialize:postable',
     summary: 'A package to create models which can be posted upon',
-    version: '1.0.0',
+    version: '1.0.1',
     git: 'https://github.com/copleykj/socialize-postable.git',
 });
 
