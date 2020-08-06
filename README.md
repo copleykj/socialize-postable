@@ -4,27 +4,25 @@ A package for creating models that can be posted on. User profiles could be post
 
 >This is a [Meteor][meteor] package with part of it's code published as a companion NPM package made to work with React Native. This allows your Meteor and React Native projects that use this package to share code between them to give you a competitive advantage when bringing your mobile and web application to market.
 
-- [Postable](#postable)
-    - [Supporting the Project](#supporting-the-project)
-    - [Meteor Installation](#meteor-installation)
-    - [React Native Installation](#react-native-installation)
-    - [Basic Usage](#basic-usage)
-    - [Scalability - Redis Oplog](#scalability---redis-oplog)
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+- [Supporting The Project](#supporting-the-project)
+- [Meteor Installation](#meteor-installation)
+- [React Native Installation](#react-native-installation)
+- [Basic Usage](#basic-usage)
+- [Scalability - Redis Oplog](#scalability---redis-oplog)
+<!-- /TOC -->
 
-## Supporting the Project
-In the spirit of keeping this and all of the packages in the [Socialize][socialize] set alive, I ask that if you find this package useful, please donate to it's development.
+## Supporting The Project
 
-![Litecoin](http://gdurl.com/xnOe)
-
-[Patreon](https://www.patreon.com/user?u=4866588) / [Paypal](https://www.paypal.me/copleykj)
+Finding the time to maintain FOSS projects can be quite difficult. I am myself responsible for over 30 personal projects across 2 platforms, as well as Multiple others maintained by the [Meteor Community Packages](https://github.com/meteor-community-packages) organization. Therfore, if you appreciate my work, I ask that you either sponsor my work through GitHub, or donate via Paypal or Patreon. Every dollar helps give cause for spending my free time fielding issues, feature requests, pull requests and releasing updates. Info can be found in the "Sponsor this project" section of the [GitHub Repo](https://github.com/copleykj/socialize-postable)
 
 ## Meteor Installation
 
 This package relies on the npm package `simpl-schema` so you will need to make sure it is installed as well.
 
 ```shell
-$ meteor npm install --save simpl-schema
-$ meteor add socialize:postable
+meteor npm install --save simpl-schema
+meteor add socialize:postable
 ```
 
 ## React Native Installation
@@ -32,11 +30,12 @@ $ meteor add socialize:postable
 When using this package with React Native, the dependency tree ensures that `simpl-schema` is loaded so there's no need to install it as when using within Meteor.
 
 ```shell
-$ npm install --save @socialize/postable
+npm install --save @socialize/postable
 ```
+
 > **Note**
 >
->  When using with React Native, you'll need to connect to a server which hosts the server side Meteor code for your app using `Meteor.connect` as per the [@socialize/react-native-meteor](https://www.npmjs.com/package/@socialize/react-native-meteor#example-usage) documentation.
+> When using with React Native, you'll need to connect to a server which hosts the server side Meteor code for your app using `Meteor.connect` as per the [@socialize/react-native-meteor](https://www.npmjs.com/package/@socialize/react-native-meteor#example-usage) documentation.
 
 ## Basic Usage
 
@@ -59,6 +58,7 @@ import { LinkableModel } from '@socializesocialize/linkable-model';
 import { BaseModel } from '@socializesocialize/base-model';
 import { PostableModel } from '@socializesocialize/postable';
 ```
+
 Once we have the appropriate packages imported, the rest of the code will run in either environment.
 
 ```javascript
