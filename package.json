@@ -1,11 +1,11 @@
 {
     "name": "@socialize/postable",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Meteor's socialize:postable package ported for React Native",
     "main": "entry-rn.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "publish": "meteor npm i && npm prune --production && meteor publish && meteor npm i",
+        "publish": "rimraf ./node_modules && meteor publish && meteor npm i --only=dev",
         "publish-release": "npm publish --access public"
     },
     "repository": {
@@ -24,7 +24,10 @@
     },
     "homepage": "https://github.com/copleykj/socialize-postable#readme",
     "dependencies": {
-        "@socialize/commentable": "^1.0.3"
+        "@socialize/commentable": "^1.0.4"
+    },
+    "devDependencies": {
+      "rimraf":"^3.0.2"
     },
     "funding": [
         {
