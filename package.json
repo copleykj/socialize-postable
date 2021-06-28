@@ -1,6 +1,6 @@
 {
     "name": "@socialize/postable",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Meteor's socialize:postable package ported for React Native",
     "main": "entry-rn.js",
     "scripts": {
