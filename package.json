@@ -24,7 +24,7 @@
     },
     "homepage": "https://github.com/copleykj/socialize-postable#readme",
     "dependencies": {
-        "@socialize/commentable": "^1.0.4"
+        "@socialize/commentable": "^1.0.5"
     },
     "devDependencies": {
         "rimraf": "^3.0.2"
